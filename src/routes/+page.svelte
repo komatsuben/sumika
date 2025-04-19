@@ -31,13 +31,20 @@
 </script>
 
 <div class="min-h-screen bg-amber flex items-center justify-center px-4 py-8">
-    <div class="w-full max-w-xl bg-cream border border-black px-8 py-6 font-mono text-primary">
-        <h1 class="text-3xl font-black tracking-tighter uppercase border-b border-black pb-2 mb-5">
+    <div
+        class="w-full max-w-xl bg-cream border border-black px-8 py-6 font-mono text-primary"
+    >
+        <h1
+            class="text-3xl font-black tracking-tighter uppercase border-b border-black pb-2 mb-5"
+        >
             📤 Upload to CDN
         </h1>
 
         <div class="mb-4">
-            <label for="file-upload" class="block text-sm font-bold uppercase mb-1">
+            <label
+                for="file-upload"
+                class="block text-sm font-bold uppercase mb-1"
+            >
                 Choose a file
             </label>
 
@@ -65,7 +72,10 @@
         </div>
 
         <div class="mb-4">
-            <label for="folder-select" class="block text-sm font-bold uppercase mb-1">
+            <label
+                for="folder-select"
+                class="block text-sm font-bold uppercase mb-1"
+            >
                 Select folder
             </label>
             <select
@@ -95,4 +105,3 @@
         {/if}
     </div>
 </div>
-

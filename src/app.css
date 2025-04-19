@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Courier New", monospace;
+}
+
+@theme {
+    --color-primary: #257180; /* dark teal */
+    --color-cream: #f2e5bf; /* light beige */
+    --color-amber: #fd8b51; /* orange highlight */
+    --color-terra: #cb6040; /* strong brick red */
+}

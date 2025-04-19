@@ -1,24 +1,38 @@
-# 🌸 Sumika (雅伽)
+# sv
 
-A project hosts all of my personal CDN files.
-Not to be confused with [Sumika-san](https://github.com/komatsuben/sumika-san)
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## 🗾 Definition
+## Creating a project
 
-Sumika (雅伽) means "elegant support"
+If you're seeing this, you've probably already done this step. Congrats!
 
-雅 = Elegant, 伽 = attendant/helper
+```bash
+# create a new project in the current directory
+npx sv create
 
-## ✏ Author
+# create a new project in my-app
+npx sv create my-app
+```
 
--   [@komatsuben](https://www.github.com/komatsuben)
+## Developing
 
-## ⚙ Tech Stack
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-**💻 Client:** Vanilla JS and also [JSDeliver](https://github.com/jsdelivr/jsdelivr)
+```bash
+npm run dev
 
-**🚀 Host:** Github
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
 
-## 🗣 BenHal's Comment
-I need my own CDN because I want to cut costs, have faster loadtime, and also it seems cool.
-This project is a no-brainer thing to make.
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

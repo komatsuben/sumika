@@ -1,4 +1,4 @@
-# 🌸 Sumika
+# 🌸 Sumika (雅伽)
 
 A project hosts all of my personal CDN files.
 Not to be confused with [Sumika-san](https://github.com/komatsuben/sumika-san)

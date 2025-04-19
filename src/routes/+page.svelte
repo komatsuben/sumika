@@ -30,37 +30,42 @@
     }
 </script>
 
-<div class="min-h-screen bg-amber flex items-center justify-center p-6">
-    <div
-        class="w-full max-w-xl bg-cream border border-black p-10 font-mono text-primary"
-    >
-        <h1
-            class="text-4xl font-black tracking-tighter uppercase border-b border-black pb-2 mb-8"
-        >
+<div class="min-h-screen bg-amber flex items-center justify-center px-4 py-8">
+    <div class="w-full max-w-xl bg-cream border border-black px-8 py-6 font-mono text-primary">
+        <h1 class="text-3xl font-black tracking-tighter uppercase border-b border-black pb-2 mb-5">
             📤 Upload to CDN
         </h1>
 
-        <div class="mt-0 mb-6">
-            <label
-                for="file-upload"
-                class="block text-sm font-bold uppercase mb-2"
-            >
+        <div class="mb-4">
+            <label for="file-upload" class="block text-sm font-bold uppercase mb-1">
                 Choose a file
             </label>
+
             <input
                 id="file-upload"
                 type="file"
                 on:change={(e) => (file = e.target.files[0])}
-                class="w-full px-4 py-3 border border-black bg-white text-black text-sm font-semibold
-                       focus:outline-none hover:bg-gray-100 transition"
+                class="hidden"
             />
+
+            <label
+                for="file-upload"
+                class="flex items-center justify-center gap-2 cursor-pointer px-4 py-3 border border-black
+                       bg-white text-black font-bold text-sm uppercase hover:bg-gray-100 transition"
+            >
+                <i class="ri-upload-cloud-line text-xl"></i>
+                <span>Upload File</span>
+            </label>
+
+            {#if file}
+                <p class="mt-2 text-xs font-mono text-black">
+                    Selected: {file.name}
+                </p>
+            {/if}
         </div>
 
-        <div class="mt-0 mb-6">
-            <label
-                for="folder-select"
-                class="block text-sm font-bold uppercase mb-2"
-            >
+        <div class="mb-4">
+            <label for="folder-select" class="block text-sm font-bold uppercase mb-1">
                 Select folder
             </label>
             <select
@@ -77,18 +82,17 @@
 
         <button
             on:click={handleUpload}
-            class="w-full py-4 bg-primary text-cream font-black text-lg border border-black uppercase hover:bg-terra transition mt-0 mb-6"
+            class="w-full py-3 bg-primary text-cream font-black text-sm border border-black uppercase hover:bg-terra transition mb-4"
             disabled={!repoReady || !file}
         >
             Upload
         </button>
 
         {#if status}
-            <p
-                class="mt-0 mb-0 text-center text-terra font-bold text-md uppercase"
-            >
+            <p class="text-center text-terra font-bold text-sm uppercase">
                 {status}
             </p>
         {/if}
     </div>
 </div>
+

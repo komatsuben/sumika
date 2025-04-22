@@ -61,6 +61,7 @@
         <h1 class="text-5xl font-black tracking-wide uppercase text-center">
             Sumika
         </h1>
+        <p>v1.0</p>
     </div>
     <div
         class="w-full max-w-xl mb-4 bg-cream border border-black px-8 py-6 font-mono text-primary"

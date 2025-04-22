@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import "tailwindcss";
 
 * {
@@ -6,6 +7,10 @@
 
 body {
     font-family: "Courier New", monospace;
+}
+
+.header {
+    font-family: "Press Start 2P", system-ui;
 }
 
 @theme {

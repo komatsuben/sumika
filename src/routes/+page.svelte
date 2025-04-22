@@ -7,6 +7,8 @@
     const folders = ["css", "fonts", "images", "js"];
     let fs, dir, git;
 
+    let token = ""; // <-- store your PAT here temporarily
+
     onMount(async () => {
         const mod = await import("$lib/client-only/git.js");
         ({ fs, dir, git } = await mod.initRepo());
@@ -14,30 +16,73 @@
     });
 
     async function handleUpload() {
-        if (!repoReady || !file) return;
+        if (!repoReady || !file || !token) {
+            status = "❌ Missing repo, file, or token";
+            return;
+        }
+
         const path = `${folder}/${file.name}`;
         const buffer = new Uint8Array(await file.arrayBuffer());
 
-        await fs.promises.write(`${dir}/${path}`, buffer);
+        await fs.promises.writeFile(`${dir}/${path}`, buffer);
         await git.add({ fs, dir, filepath: path });
         await git.commit({
             fs,
             dir,
             message: `Add ${file.name} to ${folder}`,
-            author: { name: "Your Name", email: "you@example.com" },
+            author: {
+                name: "komatsuben",
+                email: "komatsuben@users.noreply.github.com",
+            },
         });
+
+        await git.push({
+            fs,
+            http: (await import("isomorphic-git/http/web")).default,
+            dir,
+            remote: "origin",
+            ref: "docs",
+            onAuth: () => ({
+                username: "komatsuben",
+                password: token, // <-- use the input token
+            }),
+        });
+
         status = `✅ Uploaded ${file.name} to ${folder}`;
     }
 </script>
 
-<div class="min-h-screen bg-amber flex items-center justify-center px-4 py-8">
+<div
+    class="min-h-screen flex-col bg-amber flex items-center justify-center px-4 py-8"
+>
+    <div
+        class="w-full max-w-xl mb-8 bg-cream px-6 py-3 border-4 border-black text-primary"
+    >
+        <h1 class="text-5xl font-black tracking-wide uppercase text-center">
+            Sumika
+        </h1>
+    </div>
+    <div
+        class="w-full max-w-xl mb-4 bg-cream border border-black px-8 py-6 font-mono text-primary"
+    >
+        <label for="token" class="block text-sm font-bold uppercase mb-1"
+            >GitHub Token</label
+        >
+        <input
+            id="token"
+            type="password"
+            bind:value={token}
+            placeholder="Paste your token here"
+            class="w-full px-4 py-3 border border-black bg-white text-black text-sm font-semibold focus:outline-none"
+        />
+    </div>
     <div
         class="w-full max-w-xl bg-cream border border-black px-8 py-6 font-mono text-primary"
     >
         <h1
             class="text-3xl font-black tracking-tighter uppercase border-b border-black pb-2 mb-5"
         >
-            📤 Upload to CDN
+            🚀 Upload to CDN
         </h1>
 
         <div class="mb-4">
@@ -60,7 +105,7 @@
                 class="flex items-center justify-center gap-2 cursor-pointer px-4 py-3 border border-black
                        bg-white text-black font-bold text-sm uppercase hover:bg-gray-100 transition"
             >
-                <i class="ri-upload-cloud-line text-xl"></i>
+                📤
                 <span>Upload File</span>
             </label>
 
@@ -92,8 +137,8 @@
 
         <button
             on:click={handleUpload}
-            class="w-full py-3 bg-primary text-cream font-black text-sm border border-black uppercase hover:bg-terra transition mb-4"
-            disabled={!repoReady || !file}
+            class="w-full py-3 bg-primary text-cream font-black text-sm border border-black uppercase hover:bg-terra transition mb-4 disabled:opacity-50 disabled:hover:bg-primary disabled:cursor-not-allowed cursor-pointer"
+            disabled={!repoReady || !file || !token}
         >
             Upload
         </button>

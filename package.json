@@ -9,7 +9,8 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
-		"deploy": "vite build && gh-pages -d build"
+		"deploy": "vite build && gh-pages -d build",
+		"build:prod": "set NODE_ENV=production && npm run build"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^4.0.0",

@@ -3,14 +3,13 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
-	"homepage": "https://<your-username>.github.io/<repo-name>",
+	"homepage": "https://komatsuben.github.io/sumika",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
-		"deploy": "vite build && gh-pages -d build",
-		"build:prod": "set NODE_ENV=production && npm run build"
+		"deploy": "vite build && gh-pages -d build"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^4.0.0",
